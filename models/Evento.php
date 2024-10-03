@@ -15,7 +15,7 @@ class Evento {
         $this->conn = $db;
     }
 
-    // Obtener todos los productos
+    // Obtener todos los evento en la base de datoss
     public function getAll() {
         $query = "SELECT * FROM " . $this->table;
         $stmt = $this->conn->prepare($query);
@@ -23,7 +23,7 @@ class Evento {
         return $stmt;
     }
 
-    // Obtener un solo producto por ID
+    // Obtener un solo evento en la base de datos   por ID
     public function getById($uid) {
         $query = "SELECT * FROM " . $this->table . " WHERE uid = :uid";
         $stmt = $this->conn->prepare($query);
@@ -32,7 +32,7 @@ class Evento {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Crear un producto nuevo
+    // Crear un evento en la base de datos  nuevo
     public function create() {
         $query = "INSERT INTO " . $this->table . " (nombre, fecha_inicio, fecha_finalizacion, descripcion, img) VALUES (:nombre, :fecha_inicio, :fecha_finalizacion, :descripcion, :img)";
         $stmt = $this->conn->prepare($query);
@@ -44,7 +44,7 @@ class Evento {
         return $stmt->execute();
     }
 
-    // Actualizar un producto
+    // Actualizar un evento en la base de datos
     public function update($uid) {
         $query = "UPDATE " . $this->table . " SET nombre = :nombre, fecha_inicio = :fecha_inicio, fecha_finalizacion = :fecha_finalizacion, descripcion = :descripcion, img = :img WHERE uid = :uid";
         $stmt = $this->conn->prepare($query);
@@ -57,7 +57,7 @@ class Evento {
         return $stmt->execute();
     }
 
-    // Eliminar un producto
+    // Eliminar un evento en la base de datos  
     public function delete($uid) {
         $query = "DELETE FROM " . $this->table . " WHERE uid = :uid";
         $stmt = $this->conn->prepare($query);

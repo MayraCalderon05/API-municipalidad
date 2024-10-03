@@ -1,5 +1,5 @@
 <?php
-include_once '../controllers/EventoController.php';
+include_once '../controllers/eventoController.php';
 include_once '../views/Vi.php';
 
 $controller = new EventoController();
