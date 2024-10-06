@@ -1,6 +1,6 @@
 <?php
 include_once '../controllers/eventoController.php';
-include_once '../views/Vi.php';
+include_once '../views/View.php';
 
 $controller = new EventoController();
 $method = $_SERVER['REQUEST_METHOD'];
