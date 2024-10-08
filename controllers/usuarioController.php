@@ -16,6 +16,19 @@
             $this->usuario = new Usuario($this->db);
         }
 
+        //crear un usuario
+        public function  registrarUser($data){
+            $this->usuario->nombre = $data->nombre;
+            $this->usuario->apellido = $data->apeliido;
+            $this->usuario->email = $data->email;
+            $this->usuario->password = $data->password;
+            $this->usuario->telefono = $data->telefono;
+            if ($this->usuario->createUser()) {
+                return json_encode(["message" => "Usuario creado con éxito"]);
+            }
+            return json_encode(["message" => "Error al crear el usuario"]);
+        }
+
         //obtener  todos los usuarios desde el meyodo del modelo
         public function getAllUsers(){
             $stmc = $this->usuario->getAllUsers();
@@ -27,19 +40,6 @@
         public function getUserById($id){
             $usuario = $this->usuario->getUserById($id);
             return json_encode($usuario);
-        }
-
-        //crear un usuario
-        public function  createUser($data){
-            $this->usuario->nombre = $data->nombre;
-            $this->usuario->apellido = $data->apeliido;
-            $this->usuario->email = $data->email;
-            $this->usuario->password = $data->password;
-            $this->usuario->telefono = $data->telefono;
-            if ($this->usuario->createUser()) {
-                return json_encode(["message" => "Usuario creado con éxito"]);
-            }
-            return json_encode(["message" => "Error al crear el usuario"]);
         }
 
         //actualizar un usuario
