@@ -33,29 +33,32 @@ class Usuario {
     }
     //crear un usuario nuevo
     public function createUser() {
-        $query = 'INSERT INTO' . $this->table . '(nombre, apellido, email, password, telefono) VALUES (:nombre, :apellido, :email, :password, :telefono)';
+        $query = 'INSERT INTO ' . $this->table . ' (nombre, apellido, email, password, telefono) VALUES (:nombre, :apellido, :email, :password, :telefono)';
         $stmc = $this->conn->prepare($query);
         $stmc->bindParam(':nombre', $this->nombre);
         $stmc->bindParam(':apellido', $this->apellido);
         $stmc->bindParam(':email', $this->email);
         $stmc->bindParam(':password', $this->password);
         $stmc->bindParam(':telefono', $this->telefono);
-        return $stmc->execute();
+        $stmc->execute();
+        return $stmc;
+
     }
     //actualizar usuario
     public function updateUsuario($id){
-        $query = 'UPDATE' . $this->table . 'SET nombre = :nombre, apellido = :apellido, email = :email, password = :password, telefono = :telefono WHERE  id = :id';
+        $query = 'UPDATE ' . $this->table . ' SET nombre = :nombre, apellido = :apellido, email = :email, password = :password, telefono = :telefono WHERE  id = :id';
         $stmc = $this->conn->prepare($query);
         $stmc->bindParam(':nombre', $this->nombre);
         $stmc->bindParam(':apellido', $this->apellido);
         $stmc->bindParam(':email', $this->email);
         $stmc->bindParam(':password', $this->password);
         $stmc->bindParam(':telefono', $this->telefono);
-        return $stmc->execute();
+        $stmc->execute();
+        return $stmc;
     }
     //eliminar un usuario
     public function deleteUsuario($id){
-        $query =  'DELETE FROM' . $this->table . 'WHERE id = :id';
+        $query =  'DELETE FROM ' . $this->table . ' WHERE id = :id';
         $stmc =  $this->conn->prepare($query);
         $stmc->bindParam(':id', $this->id);
         return $stmc->execute();

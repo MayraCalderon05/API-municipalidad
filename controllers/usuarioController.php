@@ -19,10 +19,13 @@
         //crear un usuario
         public function  registrarUser($data){
             $this->usuario->nombre = $data->nombre;
-            $this->usuario->apellido = $data->apeliido;
+            $this->usuario->apellido = $data->apellido;
             $this->usuario->email = $data->email;
             $this->usuario->password = $data->password;
             $this->usuario->telefono = $data->telefono;
+
+            #$id_grupo = $data['id_grupo'] ?? null;
+            
             if ($this->usuario->createUser()) {
                 return json_encode(["message" => "Usuario creado con éxito"]);
             }
@@ -45,11 +48,12 @@
         //actualizar un usuario
         public function updateUser($id, $data){
             $this->usuario->nombre = $data->nombre;
-            $this->usuario->apellido = $data->apeliido;
+            $this->usuario->apellido = $data->apellido;
             $this->usuario->email = $data->email;
             $this->usuario->password = $data->password;
             $this->usuario->telefono = $data->telefono;
             if ($this->usuario->updateUser($id)) {
+
                 return json_encode(["message" => "Usuario actualizado con éxito"]);
             }
             return json_encode(["message"=>"Ha habido un error al actualizar el usuario"]);
