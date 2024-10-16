@@ -8,9 +8,10 @@ include_once '../views/View.php';
 #$segments = explode('/', trim($route, '/'));
 
 $method = $_SERVER['REQUEST_METHOD'];
-#$entity = isset($segments[3]) ? $segments[3] : '';  // Extrae la entidad de la ruta
+$url = ($_SERVER['REQUEST_URI']);
 
-if (strpos($_SERVER['REQUEST_URI'],'/eventos') !== false) {
+
+if (strpos($url,'/eventos') !== false) {
     $controller = new EventoController();
     switch ($method) {
         case 'GET':
@@ -46,7 +47,7 @@ if (strpos($_SERVER['REQUEST_URI'],'/eventos') !== false) {
             View::render(json_encode(["message" => "Método no permitido"]));
             break;
         }
-} elseif (strpos($_SERVER['REQUEST_URI'],'/registro') !== false) {
+} elseif (strpos($url,'/registro') !== false) {
     $controller = new UsuarioController();
     switch ($method) {
         case 'GET':
