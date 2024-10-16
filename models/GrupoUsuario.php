@@ -5,14 +5,9 @@ class GrupoUsuario {
 
     public $id;
     public $nombre;
-    public $permisos;
 
     public function __construct($db){
         $this->conn = $db;
-    }
-
-    public function hasPermission($permisos){
-        
     }
 
     // Obtener todos los grupo de usuarios en la base de datoss
@@ -22,6 +17,16 @@ class GrupoUsuario {
         $stmt->execute();
         return $stmt;
     }
+
+    //obtengo un grupo por ID
+    public function getGroupById($id){
+        $query = 'SELECT * FROM ' . $this->table . ' WHERE id = :id';
+        $stmc = $this->conn->prepare($query);
+        $stmc->bindParam(':id', $this->id);
+        $stmc->execute();
+        return  $stmc;
+    }
+
     // Crear un grupo de usuarios en la base de datos  nuevo
     public function createGrupo() {
         $query = "INSERT INTO " . $this->table . " (nombre) VALUES (:nombre)";
@@ -31,10 +36,11 @@ class GrupoUsuario {
     }
 
     // Actualizar un grupo de usuarios en la base de datos
-    public function update($id) {
+    public function updateGrupo($id) {
         $query = "UPDATE " . $this->table . " SET nombre = :nombre WHERE id = :id";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':nombre', $this->nombre);
+        $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
 
@@ -46,8 +52,5 @@ class GrupoUsuario {
         return $stmt->execute();
     }
 
-    public function administrar(){
-
-    }
 }
 ?>
