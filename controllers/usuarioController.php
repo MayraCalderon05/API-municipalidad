@@ -67,6 +67,16 @@
             return  json_encode(["message" => "Ha habido un error al eliminar el usuario"]);
         }
 
+        public function login($data) {
+            $user = $this->usuario->login($data->email, $data->password);
+        
+            if ($user) {
+                // Puedes generar un token o sesión aquí si lo deseas
+                return json_encode(["message" => "Inicio de sesión exitoso", "user" => $user]);
+            }
+            return json_encode(["message" => "Credenciales incorrectas"]);
+        }
+
     }
 
 ?>
