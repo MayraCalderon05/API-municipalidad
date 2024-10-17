@@ -14,7 +14,7 @@ if (strpos($_SERVER['REQUEST_URI'],'/eventos') !== false) {
     $controller = new eventoController;
 } elseif (strpos($_SERVER['REQUEST_URI'],'/grupos') !== false) {
     $controller = new grupoController;
-} elseif (strpos($_SERVER['REQUEST_URI'],'/login') !== false) {
+} elseif (strpos($_SERVER['REQUEST_URI'],'/iniciar-sesion') !== false) {
     $controller = new  usuarioController;
 } else {
     View::render(json_encode(["message" => "No se definió el ruteo"]));
