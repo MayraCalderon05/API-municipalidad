@@ -47,7 +47,7 @@ if (strpos($url,'/eventos') !== false) {
             View::render(json_encode(["message" => "Método no permitido"]));
             break;
         }
-} elseif (strpos($url,'/registro') !== false) {
+} elseif (strpos($url,'/iniciar-sesion') !== false) {
     $controller = new UsuarioController();
     switch ($method) {
         case 'GET':
