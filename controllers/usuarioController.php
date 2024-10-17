@@ -52,7 +52,7 @@
             $this->usuario->email = $data->email;
             $this->usuario->password = $data->password;
             $this->usuario->telefono = $data->telefono;
-            if ($this->usuario->updateUser($id)) {
+            if ($this->usuario->updateUsuario($id)) {
 
                 return json_encode(["message" => "Usuario actualizado con éxito"]);
             }

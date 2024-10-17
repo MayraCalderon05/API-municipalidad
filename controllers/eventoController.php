@@ -24,8 +24,8 @@ class EventoController {
     }
 
     // Obtener un evento por ID
-    public function getById($uid) {
-        $evento = $this->evento->getById($uid);
+    public function getById($id) {
+        $evento = $this->evento->getById($id);
         return json_encode($evento);
     }
 
@@ -43,21 +43,21 @@ class EventoController {
     }
 
     // Actualizar un evento
-    public function update($uid, $data) {
+    public function update($id, $data) {
         $this->evento->nombre = $data->nombre;
-        $this->evento->fecha_inicio = $data->fecha_inicio;
-        $this->evento->fecha_finalizacion = $data->fecha_finalizacion;
+        $this->evento->fecha_inicio = property_exists($data, 'fecha_inicio') ? $data->fecha_inicio : null;
+    $this->evento->fecha_finalizacion = property_exists($data, 'fecha_finalizacion') ? $data->fecha_finalizacion : null;
         $this->evento->descripcion = $data->descripcion;
         $this->evento->img = $data->img;
-        if ($this->evento->update($uid)) {
+        if ($this->evento->update($id)) {
             return json_encode(["message" => "Evento actualizado con éxito"]);
         }
         return json_encode(["message" => "Error al actualizar el evento"]);
     }
 
     // Eliminar un evento
-    public function delete($uid) {
-        if ($this->evento->delete($uid)) {
+    public function delete($id) {
+        if ($this->evento->delete($id)) {
             return json_encode(["message" => "Evento eliminado con éxito"]);
         }
         return json_encode(["message" => "Error al eliminar el evento"]);

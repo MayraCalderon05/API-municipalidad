@@ -9,7 +9,6 @@ class Usuario {
     public $email;
     public $password;
     public $telefono;
-    public $id_grupo;
 
 
     public function  __construct($db) {
@@ -48,6 +47,7 @@ class Usuario {
     public function updateUsuario($id){
         $query = 'UPDATE ' . $this->table . ' SET nombre = :nombre, apellido = :apellido, email = :email, password = :password, telefono = :telefono WHERE  id = :id';
         $stmc = $this->conn->prepare($query);
+        $stmc->bindParam(':id', $this->id);
         $stmc->bindParam(':nombre', $this->nombre);
         $stmc->bindParam(':apellido', $this->apellido);
         $stmc->bindParam(':email', $this->email);

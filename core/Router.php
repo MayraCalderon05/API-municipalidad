@@ -23,7 +23,7 @@ if (strpos($_SERVER['REQUEST_URI'],'/eventos') !== false) {
 switch ($method) {
     case 'GET':
         if (isset($_GET['id'])) {
-            $result = $controller->getById(isset($_GET['id']));
+            $result = $controller->getById($_GET['id']);
         } else {
             $result = $controller->getAll();
         }
@@ -39,14 +39,14 @@ switch ($method) {
     case 'PUT':
         if (isset($_GET['id'])) {
             $data = json_decode(file_get_contents("php://input"));
-            $result = $controller->update(isset($_GET['id']), $data);
+            $result = $controller->update($_GET['id'], $data);
             View::render($result);
         }
         break;
 
     case 'DELETE':
         if (isset($_GET['id'])) {
-            $result = $controller->delete(isset($_GET['id']));
+            $result = $controller->delete($_GET['id']);
             View::render($result);
         }
         break;
