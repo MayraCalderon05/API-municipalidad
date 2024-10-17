@@ -17,36 +17,36 @@
         }
 
         //crear un usuario
-        public function  registrarUser($data){
-            $this->usuario->nombre = $data->nombre;
-            $this->usuario->apellido = $data->apellido;
-            $this->usuario->email = $data->email;
-            $this->usuario->password = $data->password;
-            $this->usuario->telefono = $data->telefono;
+        // public function  create($data){
+        //     $this->usuario->nombre = $data->nombre;
+        //     $this->usuario->apellido = $data->apellido;
+        //     $this->usuario->email = $data->email;
+        //     $this->usuario->password = $data->password;
+        //     $this->usuario->telefono = $data->telefono;
 
-            #$id_grupo = $data['id_grupo'] ?? null;
+        //     #$id_grupo = $data['id_grupo'] ?? null;
             
-            if ($this->usuario->createUser()) {
-                return json_encode(["message" => "Usuario creado con éxito"]);
-            }
-            return json_encode(["message" => "Error al crear el usuario"]);
-        }
+        //     if ($this->usuario->createUser()) {
+        //         return json_encode(["message" => "Usuario creado con éxito"]);
+        //     }
+        //     return json_encode(["message" => "Error al crear el usuario"]);
+        // }
 
         //obtener  todos los usuarios desde el meyodo del modelo
-        public function getAllUsers(){
+        public function getAll(){
             $stmc = $this->usuario->getAllUsers();
             $usuarios = $stmc->fetchALL(PDO::FETCH_ASSOC);
             return json_encode($usuarios);
         }
 
         //obtener usuario por ID desde el metodo del modelo Usuario
-        public function getUserById($id){
+        public function getById($id){
             $usuario = $this->usuario->getUserById($id);
             return json_encode($usuario);
         }
 
         //actualizar un usuario
-        public function updateUser($id, $data){
+        public function update($id, $data){
             $this->usuario->nombre = $data->nombre;
             $this->usuario->apellido = $data->apellido;
             $this->usuario->email = $data->email;
@@ -60,14 +60,14 @@
         }
 
         //eliminar un usuario
-        public function deleteUsuario($id){
+        public function delete($id){
             if ($this->usuario->deleteUsuario($id)) {
                 return  json_encode(["message" => "Usuario eliminado con éxito"]);
             }
             return  json_encode(["message" => "Ha habido un error al eliminar el usuario"]);
         }
-
-        public function login($data) {
+        //iniciar sesion metodo post
+        public function create($data) {
             $user = $this->usuario->login($data->email, $data->password);
         
             if ($user) {

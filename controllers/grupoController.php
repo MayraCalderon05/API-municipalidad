@@ -17,7 +17,7 @@
         }
 
         //crear un grupo
-        public function  createGroup($data){
+        public function  create($data){
             $this->grupo->nombre = $data->nombre;
             
             if ($this->grupo->createGrupo()) {
@@ -27,20 +27,20 @@
         }
 
         //obtener  todos los grupos desde el meyodo del modelo
-        public function getGrupos(){
+        public function getAll(){
             $stmc = $this->grupo->obtenerGrupos();
             $grupos = $stmc->fetchALL(PDO::FETCH_ASSOC);
             return json_encode($grupos);
         }
 
         //obtener un grupo por id
-        public function getGroupById($id){
+        public function getById($id){
             $grupo = $this->grupo->getGroupById($id);
             return json_encode($grupo);
         }
 
         //actualizar un grupo
-        public function updateGrupo($id, $data){
+        public function update($id, $data){
             $this->grupo->nombre = $data->nombre;
             if ($this->grupo->updateGrupo($id)) {
 
@@ -50,7 +50,7 @@
         }
 
         //eliminar un grupo
-        public function deleteGrupo($id){
+        public function delete($id){
             if ($this->grupo->delete($id)) {
                 return  json_encode(["message" => "Grupo eliminado con éxito"]);
             }
